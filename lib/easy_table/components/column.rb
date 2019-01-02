@@ -5,11 +5,12 @@ module EasyTable
 
       delegate :tag, :capture, :content_tag, to: :@template
 
-      def initialize(node, title, label, opts, template, block)
+      def initialize(node, title, label, opts, template, collection, block)
         @node = node
         @title = title
         @label = label
         @template = template
+        @collection = collection
         @block = block
         @opts = opts
         header_opts = @opts.select { |k, _v| k =~ /^header_.*/ }
@@ -36,7 +37,7 @@ module EasyTable
       private
 
       def label
-        @label || translate(@title)
+        @label || translate(@title) || @collection.human_attribute_name(@title)
       end
 
       def concat(tag)

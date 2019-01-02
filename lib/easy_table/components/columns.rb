@@ -10,7 +10,7 @@ module EasyTable
           opts = opts
         end
         child = node << Tree::TreeNode.new(title)
-        column = Column.new(child, title, label, opts, @template, block)
+        column = Column.new(child, title, label, opts, @template, @collection, block)
         child.content = column
       end
 

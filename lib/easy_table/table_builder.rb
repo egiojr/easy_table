@@ -1,4 +1,17 @@
 module EasyTable
+
+  # Custom i18n attributes
+  mattr_accessor :primary_key_i18n
+  @@primary_key_i18n = nil
+
+  # Default i18n attributes
+  mattr_accessor :default_key_i18n
+  @@default_key_i18n = nil
+
+  def self.setup
+    yield self
+  end
+
   class TableBuilder
     include EasyTable::Components::Columns
     include EasyTable::Components::Spans
